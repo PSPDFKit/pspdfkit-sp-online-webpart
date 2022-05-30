@@ -1,0 +1,14 @@
+.placeholderWrapper {
+  background-color: #f1f1f1;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.placeholderWrapper p {
+  width: 60ch;
+}
