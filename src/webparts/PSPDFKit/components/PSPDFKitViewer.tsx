@@ -17,7 +17,7 @@ export default function PSPDFKitViewer(props: IPSPDFKitViewerProps) {
       return;
     }
     const container = containerRef.current;
-    let instance, PSPDFKit;
+    let instance, PSPDFKit, restoreBlobDownloadInterception;
 
     (async () => {
       console.log("Will load PSPDFKit instance");
@@ -47,9 +47,11 @@ export default function PSPDFKitViewer(props: IPSPDFKitViewerProps) {
           saveItem,
         ],
       });
+
+      restoreBlobDownloadInterception = disableBlobDownloadInterception();
     })();
 
-    return () => PSPDFKit && PSPDFKit.unload(container);
+    return () => PSPDFKit && PSPDFKit.unload(container) && restoreBlobDownloadInterception();
   }, [documentURL]);
 
   React.useEffect(() => {
@@ -73,4 +75,20 @@ export default function PSPDFKitViewer(props: IPSPDFKitViewerProps) {
 }
 export interface IPSPDFKitViewerProps {
   documentURL: string;
+}
+
+function disableBlobDownloadInterception() {
+  function disableBlobDownloadInterceptionInLink() {
+    (event: MouseEvent) => {
+      if (
+        (event.target as Element).nodeName === "A" &&
+        (event.target as HTMLElement).hasAttribute("download")
+      ) {
+        (event.target as HTMLAnchorElement).dataset.interception = "off";
+      }
+    }
+  }
+  document.addEventListener("click", disableBlobDownloadInterceptionInLink);
+
+  return () => document.removeEventListener("click", disableBlobDownloadInterceptionInLink);
 }
