@@ -13,7 +13,29 @@
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": ""
-    }
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "pspdfkit-web-part description"
+      },
+      "longDescription": {
+        "default": "pspdfkit-web-part description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "pspdfkit-web-part PSPDFKitWebPart Feature",
+        "description": "The feature that activates PSPDFKitWebPart from the pspdfkit-web-part solution.",
+        "id": "0d18ee29-b9a6-4100-9c5b-51437e191050",
+        "version": "1.0.0.0",
+        "componentIds": [
+          "0d18ee29-b9a6-4100-9c5b-51437e191050"
+        ]
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/pspdfkit-web-part.sppkg"
