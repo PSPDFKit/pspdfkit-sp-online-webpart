@@ -1,11 +1,11 @@
 import * as React from "react";
-import { sp } from "@pnp/sp";
 import "@pnp/sp/webs";
 import "@pnp/sp/files";
 import "@pnp/sp/folders";
 
 import { useSnackbar } from "react-simple-snackbar";
 import styles from "./PSPDFKitViewer.module.scss";
+import { getSP } from "../../../pnpjsConfig";
 
 export default function PSPDFKitViewer(props: IPSPDFKitViewerProps) {
   const containerRef = React.useRef(null);
@@ -30,6 +30,7 @@ export default function PSPDFKitViewer(props: IPSPDFKitViewerProps) {
         async onPress() {
           openSnackbar("Updating content...");
           const fileContent = await instance.exportPDF();
+          const sp = getSP();
           const file = sp.web.getFileByUrl(documentURL);
 
           await file.setContent(fileContent);
@@ -92,3 +93,4 @@ function disableBlobDownloadInterception() {
 
   return () => document.removeEventListener("click", disableBlobDownloadInterceptionInLink);
 }
+

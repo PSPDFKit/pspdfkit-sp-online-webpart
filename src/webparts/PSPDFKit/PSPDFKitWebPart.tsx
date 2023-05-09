@@ -7,11 +7,11 @@ import SnackbarProvider from "react-simple-snackbar";
 
 import * as strings from "PSPDFKitWebPartStrings";
 import PSPDFKitViewer from "./components/PSPDFKitViewer";
-import { sp } from "@pnp/sp";
 import {
   PropertyFieldFilePicker,
   IFilePickerResult,
 } from "@pnp/spfx-property-controls/lib/PropertyFieldFilePicker";
+import { getSP } from "../../pnpjsConfig";
 
 export interface IPspdfSampleWebPartProps {
   description: string;
@@ -36,9 +36,7 @@ export default class PspdfSampleWebPart extends BaseClientSideWebPart<IPspdfSamp
 
   public onInit(): Promise<void> {
     return super.onInit().then((_) => {
-      sp.setup({
-        spfxContext: this.context,
-      });
+      getSP(this.context);
     });
   }
 
@@ -58,7 +56,7 @@ export default class PspdfSampleWebPart extends BaseClientSideWebPart<IPspdfSamp
               groupName: strings.PDFViewingGroupName,
               groupFields: [
                 PropertyFieldFilePicker("filePicker", {
-                  context: this.context,
+                  context: this.context as any,
                   filePickerResult: this.properties.filePickerResult,
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   properties: this.properties,

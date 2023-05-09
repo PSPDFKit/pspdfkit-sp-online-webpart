@@ -2,7 +2,7 @@
   "@microsoft/generator-sharepoint": {
     "isCreatingSolution": true,
     "environment": "spo",
-    "version": "1.12.1",
+    "version": "1.15.2",
     "libraryName": "pspdfkit-web-part",
     "libraryId": "d8ba09d1-3ad2-48d8-b07a-e1c495cd152a",
     "packageManager": "npm",
