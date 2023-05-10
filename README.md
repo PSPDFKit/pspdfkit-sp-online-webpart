@@ -11,7 +11,7 @@ Please check [this link](https://docs.google.com/presentation/d/1qy0hDQOMeU6WSi7
 
 ## Installation and deployment
 
-Step 0. Please make sure to have Node.js v14 installed
+Step 0. Please make sure to have Node.js v16.19.0 installed
 
 Step 1. Clone this repository
 
